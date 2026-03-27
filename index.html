@@ -314,8 +314,11 @@ function renderTable() {
     const q = searchQ.toLowerCase();
     rows = rows.filter(r => r.name.toLowerCase().includes(q));
   }
+  if (filterWinners) {
+    rows = rows.filter(r => r.cpqa != null && r.cpqa > 0 && r.cpqa <= 500);
+  }
   if (filterSpend) {
-    rows = rows.filter(r => r.cost >= 500);
+    rows = rows.filter(r => r.cost != null && r.cost >= 500);
   }
 
   // Sort
